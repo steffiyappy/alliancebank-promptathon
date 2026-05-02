@@ -1,15 +1,28 @@
 /* ── Alliance Bank Promptathon — Shared JS ────────────── */
 
-const TEAM_CODES = {
-  'consumer-banking': 'ABMB-CB',
-  'sme-banking': 'ABMB-SME',
-  'hr-talent': 'ABMB-HR',
-  'finance-reporting': 'ABMB-FIN',
-  'risk-compliance': 'ABMB-RC',
-  'digital-technology': 'ABMB-DIGI',
-  'corporate-comms': 'ABMB-COMMS',
-  'strategy-transformation': 'ABMB-STRAT'
+// SHA-256 hashes of team codes — plaintext codes are never stored here.
+// The Game Master distributes the actual codes separately.
+const TEAM_HASHES = {
+  'consumer-banking':        '8777988219095332a3716b2ec282359e1959c7359f6805a6616d0ba55c68df5f',
+  'sme-banking':             'aaedccb0a2bcefc29689ced1cc3b7eaaf5605dda02f5d4b1836b522e73763a45',
+  'hr-talent':               '7e0457c6828707fc49285553701ce386d1f289cc91d399b99856cad141085781',
+  'finance-reporting':       'dd1a027fdad3db48941976045465d7666edaf030c6468af9bde84778e8c2752d',
+  'risk-compliance':         '3837d7db76f8e3e7aee579c31b513c1d406124af88ca30841572501efbbf2890',
+  'digital-technology':      'eceadeb71b726928f746245a4f709d53a2e513f6bd73b149cef000da95075dda',
+  'corporate-comms':         '4f63bf2c13dff2809a0c4d3a3051f83ea2411bf0ba62ee728808b211a251b343',
+  'strategy-transformation': '7316471d7c2179f7d6ad109e8d0baecebce7cfa1fc229e386f6d230c720ca143'
 };
+
+// Hash a string with SHA-256, return hex string
+async function sha256(str) {
+  const buf = await crypto.subtle.digest(
+    'SHA-256',
+    new TextEncoder().encode(str)
+  );
+  return Array.from(new Uint8Array(buf))
+    .map(b => b.toString(16).padStart(2, '0'))
+    .join('');
+}
 
 // Get current team ID from page meta tag
 function getTeamId() {
@@ -59,10 +72,12 @@ function initTeamPage() {
 
   submitBtn?.addEventListener('click', attemptUnlock);
 
-  function attemptUnlock() {
+  async function attemptUnlock() {
     const val = codeInput.value.trim().toUpperCase();
-    const expected = TEAM_CODES[teamId];
-    if (val === expected) {
+    const inputHash = await sha256(val);
+    const expectedHash = TEAM_HASHES[teamId];
+
+    if (inputHash === expectedHash) {
       unlockTeam(teamId);
       showContent(gate, content, teamId);
     } else {
