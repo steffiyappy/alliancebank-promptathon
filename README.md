@@ -11,7 +11,7 @@ A GitHub Pages site hosting the game packs for Alliance Bank's internal Microsof
 
 ## Team Codes
 
-Each team receives their code from the Game Master:
+Each team receives their code from the Microsoft:
 
 | Team | Department | Code |
 |------|-----------|------|
