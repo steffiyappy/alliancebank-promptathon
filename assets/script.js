@@ -1,7 +1,7 @@
 /* ── Alliance Bank Promptathon — Shared JS ────────────── */
 
 // SHA-256 hashes of team codes — plaintext codes are never stored here.
-// The Microsoft distributes the actual codes separately.
+// Team codes are distributed separately.
 const TEAM_HASHES = {
   'consumer-banking':        '8777988219095332a3716b2ec282359e1959c7359f6805a6616d0ba55c68df5f',
   'sme-banking':             'aaedccb0a2bcefc29689ced1cc3b7eaaf5605dda02f5d4b1836b522e73763a45',
@@ -83,7 +83,7 @@ function initTeamPage() {
     } else {
       codeInput.classList.add('error');
       errorMsg.style.display = 'block';
-      errorMsg.textContent = '❌ Incorrect team code. Check with your Microsoft.';
+      errorMsg.textContent = '❌ Incorrect team code. Please try again.';
       setTimeout(() => codeInput.classList.remove('error'), 600);
     }
   }

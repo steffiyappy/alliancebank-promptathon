@@ -51,7 +51,7 @@
     <div class="lock-box">
       <div class="lock-icon">🏦</div>
       <h2>ABMB Prompt-a-thon 7 May</h2>
-      <p>Enter the event password to access the game.<br>Ask your <strong>Microsoft</strong> if you don't have it.</p>
+      <p>Enter the event password to access the game.</p>
       <div class="pw-wrapper">
         <input type="password" id="main-pw-input" class="lock-input"
                placeholder="Enter event password…" autocomplete="off" spellcheck="false">
@@ -264,7 +264,7 @@
       } else {
         input.classList.add('error');
         errMsg.style.display = 'block';
-        errMsg.textContent = '❌ Incorrect password. Ask your Microsoft.';
+        errMsg.textContent = '❌ Incorrect password. Please try again.';
         setTimeout(() => input.classList.remove('error'), 600);
       }
     }
