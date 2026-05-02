@@ -6,6 +6,30 @@
   <title>Alliance Bank × Microsoft 365 Copilot Prompt-a-thon 2025</title>
   <link rel="stylesheet" href="assets/style.css">
   <style>
+    /* ── Main page lock ── */
+    #main-lock-gate {
+      min-height: 100vh; display: flex; align-items: center;
+      justify-content: center; padding: 2rem;
+      background: linear-gradient(135deg, var(--ab-navy) 0%, #004B8F 60%, var(--ab-sky) 100%);
+    }
+    #main-lock-gate .lock-box {
+      box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+    }
+    #main-lock-gate .lock-box p { color: #555; }
+    .pw-wrapper {
+      position: relative; width: 100%; margin-bottom: 14px;
+    }
+    .pw-wrapper .lock-input {
+      margin-bottom: 0; padding-right: 48px;
+    }
+    .pw-toggle {
+      position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
+      background: none; border: none; cursor: pointer;
+      font-size: 1.1rem; line-height: 1; padding: 4px;
+      color: var(--ab-gray); transition: color 0.15s;
+    }
+    .pw-toggle:hover { color: var(--ab-blue); }
+    #main-content { display: none; }
     .index-hero { padding: 100px 2rem 72px; }
     .how-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
     .how-item { background: white; border-radius: 14px; padding: 24px; border: 1px solid var(--ab-border); display: flex; gap: 14px; align-items: flex-start; }
@@ -21,6 +45,27 @@
   </style>
 </head>
 <body>
+
+  <!-- ── Main Site Lock Gate ── -->
+  <div id="main-lock-gate">
+    <div class="lock-box">
+      <div class="lock-icon">🏦</div>
+      <h2>Prompt-a-thon 2025</h2>
+      <p>Enter the event password to access the game.<br>Ask your <strong>Game Master</strong> if you don't have it.</p>
+      <div class="pw-wrapper">
+        <input type="password" id="main-pw-input" class="lock-input"
+               placeholder="Enter event password…" autocomplete="off" spellcheck="false">
+        <button class="pw-toggle" id="pw-toggle-btn" type="button"
+                aria-label="Show/hide password" title="Show/hide password">👁️</button>
+      </div>
+      <p class="error-msg" id="main-error-msg"></p>
+      <button id="main-unlock-btn" class="btn btn-primary">🔓 Enter Event</button>
+    </div>
+  </div>
+
+  <!-- ── All main site content (hidden until password correct) ── -->
+  <div id="main-content">
+
   <header class="site-header">
     <div class="logo-area">
       <div class="logo-badge">AB</div>
@@ -179,5 +224,60 @@
     <strong>Alliance Bank Malaysia × Microsoft 365 Copilot Prompt-a-thon 2025</strong><br>
     <span style="margin-top:6px;display:block;">Powered by Microsoft 365 Copilot · Organised by Microsoft Malaysia</span>
   </footer>
+
+  </div><!-- /#main-content -->
+
+  <script>
+    // SHA-256 hash of "ABMB7May" — plaintext never stored here
+    const MAIN_HASH = '89d8bae188c8c83066d717deea985ee7c6d34a34ba73157a79b34acddcabf6c5';
+
+    async function sha256(str) {
+      const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+      return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+    }
+
+    const gate    = document.getElementById('main-lock-gate');
+    const content = document.getElementById('main-content');
+    const input   = document.getElementById('main-pw-input');
+    const btn     = document.getElementById('main-unlock-btn');
+    const toggle  = document.getElementById('pw-toggle-btn');
+    const errMsg  = document.getElementById('main-error-msg');
+
+    // Stay unlocked on refresh
+    if (localStorage.getItem('abmb_main_unlocked') === 'true') showMain();
+
+    // Show/hide password toggle
+    toggle.addEventListener('click', () => {
+      const isHidden = input.type === 'password';
+      input.type = isHidden ? 'text' : 'password';
+      toggle.textContent = isHidden ? '🙈' : '👁️';
+    });
+
+    input.addEventListener('keydown', e => { if (e.key === 'Enter') attemptUnlock(); });
+    btn.addEventListener('click', attemptUnlock);
+
+    async function attemptUnlock() {
+      const hash = await sha256(input.value.trim());
+      if (hash === MAIN_HASH) {
+        localStorage.setItem('abmb_main_unlocked', 'true');
+        showMain();
+      } else {
+        input.classList.add('error');
+        errMsg.style.display = 'block';
+        errMsg.textContent = '❌ Incorrect password. Ask your Game Master.';
+        setTimeout(() => input.classList.remove('error'), 600);
+      }
+    }
+
+    function showMain() {
+      gate.style.display = 'none';
+      content.style.display = 'block';
+      content.style.opacity = '0';
+      requestAnimationFrame(() => {
+        content.style.transition = 'opacity 0.4s ease';
+        content.style.opacity = '1';
+      });
+    }
+  </script>
 </body>
 </html>
