@@ -241,6 +241,8 @@
       localStorage.setItem('abmb_main_unlocked', 'true');
       showMain();
     } else if (localStorage.getItem('abmb_main_unlocked') === 'true') {
+      // Clear team assignment when returning to index so teams can re-enter their pack
+      sessionStorage.removeItem('abmb_assigned_team');
       showMain();
     }
 
