@@ -242,13 +242,7 @@
       localStorage.setItem('abmb_main_unlocked', 'true');
       showMain();
     } else if (localStorage.getItem('abmb_main_unlocked') === 'true') {
-      // If already assigned a team this session, redirect straight there
-      const assigned = sessionStorage.getItem('abmb_assigned_team');
-      if (assigned) {
-        window.location.href = 'teams/' + assigned + '.html';
-      } else {
-        showMain();
-      }
+      showMain();
     }
 
     // Show/hide password toggle
