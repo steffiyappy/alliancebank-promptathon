@@ -13,19 +13,18 @@ const TEAM_HASHES = {
   'strategy-transformation': '7316471d7c2179f7d6ad109e8d0baecebce7cfa1fc229e386f6d230c720ca143'
 };
 
-// In-memory unlock flag — clears on every page refresh (no storage)
+// In-memory unlock flag — clears on every page refresh
 let _teamUnlocked = false;
 
-// Clear any stale localStorage unlock keys from previous versions
+// Clear any stale keys left from previous versions
 (function clearLegacyStorage() {
   const keysToRemove = [];
   for (let i = 0; i < localStorage.length; i++) {
     const k = localStorage.key(i);
-    if (k && (k.startsWith('abmb_unlocked_') || k === 'abmb_assigned_team')) {
-      keysToRemove.push(k);
-    }
+    if (k && k.startsWith('abmb_unlocked_')) keysToRemove.push(k);
   }
   keysToRemove.forEach(k => localStorage.removeItem(k));
+  sessionStorage.removeItem('abmb_assigned_team');
 })();
 
 // Hash a string with SHA-256, return hex string
@@ -55,10 +54,8 @@ function isPowerUpRevealed(teamId) {
   return sessionStorage.getItem(`abmb_powerup_${teamId}`) === 'true';
 }
 
-function unlockTeam(teamId) {
+function unlockTeam() {
   _teamUnlocked = true;
-  // Track assigned team in sessionStorage (clears when browser closes)
-  sessionStorage.setItem('abmb_assigned_team', teamId);
 }
 
 function revealPowerUp(teamId) {
@@ -82,27 +79,15 @@ function initTeamPage() {
     return;
   }
 
-  // Check if another team has already claimed this session
-  const assignedTeam = sessionStorage.getItem('abmb_assigned_team');
-  if (assignedTeam && assignedTeam !== teamId) {
-    if (gate) gate.style.display = 'none';
-    if (content) content.style.display = 'none';
-    const wrongMsg = document.getElementById('wrong-team-msg');
-    if (wrongMsg) wrongMsg.style.display = 'flex';
-    return;
-  }
-
   // In-memory unlock — requires re-entry on every refresh
   if (_teamUnlocked) {
     showContent(gate, content, teamId);
     return;
   }
 
-  // Enter key support
   codeInput?.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') attemptUnlock();
   });
-
   submitBtn?.addEventListener('click', attemptUnlock);
 
   async function attemptUnlock() {
@@ -111,7 +96,7 @@ function initTeamPage() {
     const expectedHash = TEAM_HASHES[teamId];
 
     if (inputHash === expectedHash) {
-      unlockTeam(teamId);
+      unlockTeam();
       showContent(gate, content, teamId);
     } else {
       codeInput.classList.add('error');
@@ -174,7 +159,7 @@ document.addEventListener('DOMContentLoaded', initTeamPage);
 
 // Inject a subtle reset button on all team pages
 document.addEventListener('DOMContentLoaded', () => {
-  if (!getTeamId()) return; // only on team pages
+  if (!getTeamId()) return;
 
   const btn = document.createElement('button');
   btn.textContent = '↺ Reset';

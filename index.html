@@ -238,7 +238,6 @@
     // Facilitator bypass — visiting ?facilitator sets a session flag and shows all packs without codes
     if (new URLSearchParams(window.location.search).has('facilitator')) {
       sessionStorage.setItem('abmb_facilitator', 'true');
-      sessionStorage.removeItem('abmb_assigned_team');
       localStorage.setItem('abmb_main_unlocked', 'true');
       showMain();
     } else if (localStorage.getItem('abmb_main_unlocked') === 'true') {
