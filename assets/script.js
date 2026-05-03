@@ -73,7 +73,7 @@ function initTeamPage() {
   const submitBtn = document.getElementById('unlock-btn');
   const errorMsg = document.getElementById('error-msg');
 
-  // Facilitator bypass — skip all locks
+  // Facilitator bypass — only active if flag was set this session via ?facilitator
   if (isFacilitator()) {
     showContent(gate, content, teamId);
     return;
@@ -106,7 +106,7 @@ function initTeamPage() {
     const expectedHash = TEAM_HASHES[teamId];
 
     if (inputHash === expectedHash) {
-      unlockTeam();
+      unlockTeam(teamId);
       showContent(gate, content, teamId);
     } else {
       codeInput.classList.add('error');
