@@ -42,6 +42,7 @@ function isPowerUpRevealed(teamId) {
 
 function unlockTeam(teamId) {
   localStorage.setItem(`abmb_unlocked_${teamId}`, 'true');
+  localStorage.setItem('abmb_assigned_team', teamId);
 }
 
 function revealPowerUp(teamId) {
@@ -58,6 +59,17 @@ function initTeamPage() {
   const codeInput = document.getElementById('team-code-input');
   const submitBtn = document.getElementById('unlock-btn');
   const errorMsg = document.getElementById('error-msg');
+
+  // Check if another team has already claimed this session
+  const assignedTeam = localStorage.getItem('abmb_assigned_team');
+  if (assignedTeam && assignedTeam !== teamId) {
+    // Show wrong-team block — hide gate and content
+    if (gate) gate.style.display = 'none';
+    if (content) content.style.display = 'none';
+    const wrongMsg = document.getElementById('wrong-team-msg');
+    if (wrongMsg) wrongMsg.style.display = 'flex';
+    return;
+  }
 
   // Already unlocked?
   if (isUnlocked(teamId)) {
