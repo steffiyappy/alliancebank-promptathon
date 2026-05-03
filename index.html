@@ -235,8 +235,20 @@
     const toggle  = document.getElementById('pw-toggle-btn');
     const errMsg  = document.getElementById('main-error-msg');
 
-    // Stay unlocked on refresh
-    if (localStorage.getItem('abmb_main_unlocked') === 'true') showMain();
+    // Facilitator bypass — visiting ?facilitator clears team assignment and shows all packs
+    if (new URLSearchParams(window.location.search).has('facilitator')) {
+      localStorage.removeItem('abmb_assigned_team');
+      localStorage.setItem('abmb_main_unlocked', 'true');
+      showMain();
+    } else if (localStorage.getItem('abmb_main_unlocked') === 'true') {
+      // If already assigned a team, redirect straight there
+      const assigned = localStorage.getItem('abmb_assigned_team');
+      if (assigned) {
+        window.location.href = 'teams/' + assigned + '.html';
+      } else {
+        showMain();
+      }
+    }
 
     // Show/hide password toggle
     toggle.addEventListener('click', () => {
@@ -262,6 +274,12 @@
     }
 
     function showMain() {
+      // If already assigned a team, go straight there
+      const assigned = localStorage.getItem('abmb_assigned_team');
+      if (assigned) {
+        window.location.href = 'teams/' + assigned + '.html';
+        return;
+      }
       gate.style.display = 'none';
       content.style.display = 'block';
       content.style.opacity = '0';
