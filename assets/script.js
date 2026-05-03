@@ -172,3 +172,37 @@ function showPowerUps(gate, section, banner) {
 
 document.addEventListener('DOMContentLoaded', initTeamPage);
 
+// Inject a subtle reset button on all team pages
+document.addEventListener('DOMContentLoaded', () => {
+  if (!getTeamId()) return; // only on team pages
+
+  const btn = document.createElement('button');
+  btn.textContent = '↺ Reset';
+  btn.title = 'Clear session and start over';
+  Object.assign(btn.style, {
+    position: 'fixed',
+    bottom: '14px',
+    right: '16px',
+    zIndex: '9999',
+    background: 'transparent',
+    border: '1px solid #aaa',
+    borderRadius: '6px',
+    color: '#888',
+    fontSize: '11px',
+    padding: '4px 10px',
+    cursor: 'pointer',
+    opacity: '0.5',
+    transition: 'opacity 0.2s'
+  });
+  btn.addEventListener('mouseenter', () => btn.style.opacity = '1');
+  btn.addEventListener('mouseleave', () => btn.style.opacity = '0.5');
+  btn.addEventListener('click', () => {
+    if (confirm('Reset your session? You will need to enter your team code again.')) {
+      sessionStorage.clear();
+      _teamUnlocked = false;
+      window.location.reload();
+    }
+  });
+  document.body.appendChild(btn);
+});
+
