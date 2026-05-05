@@ -202,15 +202,47 @@
 
       <!-- Power Ups Section -->
       <div id="powerups-section">
-        <div class="section-title" style="margin-bottom:16px;">⚡ Your Power Up</div>
-        <p style="color:var(--ab-gray);font-size:0.9rem;margin-bottom:24px;">Take your strongest Copilot output and apply this Power Up to elevate it before you present.</p>
+        <div class="section-title" style="margin-bottom:16px;">&#9889; Power Up: Adopt It</div>
+        <p style="color:#333;font-size:0.9rem;margin-bottom:24px;">You have used Copilot to solve a scenario. Now bring it back to your real work at Alliance Bank.</p>
+
+        <!-- Step 1 -->
+        <div class="powerup-card" style="margin-bottom:16px;">
+          <div class="pu-header">
+            <span class="pu-num">1</span>
+            <span class="pu-title">Pick Your Use Case <span style="font-size:0.8rem;font-weight:500;opacity:0.7;">&middot; 5 min</span></span>
+          </div>
+          <p style="font-size:0.88rem;line-height:1.7;margin:0 0 12px;">In Tasks 1 and 2, you found that repeat examination findings, not new regulatory requirements, are the biggest driver of compliance risk. You then designed an operating model built around proactive monitoring and structured remediation tracking. Alliance Bank's Risk and Compliance teams know the same findings are coming back because execution and tracking are inconsistent.</p>
+          <p style="font-size:0.87rem;margin-bottom:8px;font-weight:600;">Use cases from risk and compliance teams at banks like yours. React to these: swap, add, or keep.</p>
+          <ul style="font-size:0.86rem;line-height:1.9;color:#333;margin:0 0 14px 18px;">
+            <li>Analyse a set of examination findings and group them by root cause, repeat frequency, and regulatory body, then rank by combined risk exposure</li>
+            <li>Draft a management response to a regulatory examination finding using the finding text and evidence summary as direct input</li>
+            <li>Review a compliance monitoring schedule and identify coverage gaps where no control testing is planned for the next quarter</li>
+            <li>Summarise a new BNM or SC regulatory circular and extract the top five action items with suggested owners and realistic deadlines</li>
+            <li>Write a 90-day remediation tracker for repeat findings, with owners, due dates, escalation triggers, and measurable success criteria</li>
+          </ul>
+          <p style="font-size:0.87rem;margin-bottom:8px;">As a team, pick your top 3, then paste this into Copilot:</p>
+          <div class="pu-prompt">"We work in risk and compliance at a bank. Here are 3 Copilot use cases we identified: [list them]. Score each on: time saved per week, how often we'd use it, and ease of implementation. Rank them and explain your top pick."</div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="powerup-card" style="margin-bottom:16px;">
+          <div class="pu-header">
+            <span class="pu-num">2</span>
+            <span class="pu-title">Build the Prompt <span style="font-size:0.8rem;font-weight:500;opacity:0.7;">&middot; 5 min</span></span>
+          </div>
+          <p style="font-size:0.88rem;line-height:1.7;margin:0 0 12px;">Your winning use case needs a great prompt. Paste this into Copilot:</p>
+          <div class="pu-prompt">"For this use case: [describe your winning use case]. What data or input would we need? Write the best Copilot prompt to make this work. Then show a sample output."</div>
+          <p style="font-size:0.86rem;margin-top:10px;color:var(--ab-gray);">Test it. Refine it. Make it yours.</p>
+        </div>
+
+        <!-- Step 3 -->
         <div class="powerup-card">
           <div class="pu-header">
-            <span class="pu-num">⚡</span>
-            <span class="pu-title">Policy Draft</span>
+            <span class="pu-num">3</span>
+            <span class="pu-title">Pitch It <span style="font-size:0.8rem;font-weight:500;opacity:0.7;">&middot; 5 min</span></span>
           </div>
-          <div class="pu-prompt">"Convert the recommendations into a short policy or guideline draft."</div>
-          <div class="pu-how">💡 Use this to show that your solution isn't just an idea. It's something Aurora Nexus Global can actually implement and enforce.</div>
+          <p style="font-size:0.88rem;line-height:1.7;margin:0 0 12px;">Draft your adoption pitch:</p>
+          <div class="pu-prompt">"Draft a short adoption pitch for our compliance manager: what the use case is, what problem it solves, what data or content we'd give Copilot, and what the first step is to roll it out to the team."</div>
         </div>
       </div>
 

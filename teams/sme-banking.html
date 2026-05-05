@@ -203,15 +203,47 @@
 
       <!-- Power Ups Section -->
       <div id="powerups-section">
-        <div class="section-title" style="margin-bottom:16px;">⚡ Your Power Up</div>
-        <p style="color:var(--ab-gray);font-size:0.9rem;margin-bottom:24px;">Take your strongest Copilot output and apply this Power Up to elevate it before you present.</p>
+        <div class="section-title" style="margin-bottom:16px;">&#9889; Power Up: Adopt It</div>
+        <p style="color:#333;font-size:0.9rem;margin-bottom:24px;">You have used Copilot to solve a scenario. Now bring it back to your real work at Alliance Bank.</p>
+
+        <!-- Step 1 -->
+        <div class="powerup-card" style="margin-bottom:16px;">
+          <div class="pu-header">
+            <span class="pu-num">1</span>
+            <span class="pu-title">Pick Your Use Case <span style="font-size:0.8rem;font-weight:500;opacity:0.7;">&middot; 5 min</span></span>
+          </div>
+          <p style="font-size:0.88rem;line-height:1.7;margin:0 0 12px;">In Tasks 1 and 2, you mapped where time is lost across the SME loan journey and designed a faster path from RM to credit decision. You found that manual document gathering, inconsistent call notes, and handover gaps are the primary reasons the journey takes 14 days when it should take 5. Alliance Bank's SME Banking teams face the same bottlenecks.</p>
+          <p style="font-size:0.87rem;margin-bottom:8px;font-weight:600;">Use cases from SME banking teams at banks like yours. React to these: swap, add, or keep.</p>
+          <ul style="font-size:0.86rem;line-height:1.9;color:#333;margin:0 0 14px 18px;">
+            <li>Summarise an SME loan application package and flag missing or incomplete documents before it reaches the credit team</li>
+            <li>Draft a structured call note from RM meeting notes, formatted for CRM entry and ready for credit submission</li>
+            <li>Generate a document checklist for a specific SME loan product, tailored to the customer's industry and facility type</li>
+            <li>Compare two SME credit applications with similar profiles and highlight the key risk differentiators to speed up credit decisioning</li>
+            <li>Write a weekly pipeline status update for the RM team, covering stage, days in pipeline, and the next required action for each live deal</li>
+          </ul>
+          <p style="font-size:0.87rem;margin-bottom:8px;">As a team, pick your top 3, then paste this into Copilot:</p>
+          <div class="pu-prompt">"We work in SME banking at a bank. Here are 3 Copilot use cases we identified: [list them]. Score each on: time saved per week, how often we'd use it, and ease of implementation. Rank them and explain your top pick."</div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="powerup-card" style="margin-bottom:16px;">
+          <div class="pu-header">
+            <span class="pu-num">2</span>
+            <span class="pu-title">Build the Prompt <span style="font-size:0.8rem;font-weight:500;opacity:0.7;">&middot; 5 min</span></span>
+          </div>
+          <p style="font-size:0.88rem;line-height:1.7;margin:0 0 12px;">Your winning use case needs a great prompt. Paste this into Copilot:</p>
+          <div class="pu-prompt">"For this use case: [describe your winning use case]. What data or input would we need? Write the best Copilot prompt to make this work. Then show a sample output."</div>
+          <p style="font-size:0.86rem;margin-top:10px;color:var(--ab-gray);">Test it. Refine it. Make it yours.</p>
+        </div>
+
+        <!-- Step 3 -->
         <div class="powerup-card">
           <div class="pu-header">
-            <span class="pu-num">⚡</span>
-            <span class="pu-title">Action Plan in 5 Steps</span>
+            <span class="pu-num">3</span>
+            <span class="pu-title">Pitch It <span style="font-size:0.8rem;font-weight:500;opacity:0.7;">&middot; 5 min</span></span>
           </div>
-          <div class="pu-prompt">"Rewrite the output as 5 concrete actions with owners."</div>
-          <div class="pu-how">💡 Use this to convert your recommendations into something the Head of SME Banking can act on immediately after the session.</div>
+          <p style="font-size:0.88rem;line-height:1.7;margin:0 0 12px;">Draft your adoption pitch:</p>
+          <div class="pu-prompt">"Draft a short adoption pitch for our SME banking manager: what the use case is, what problem it solves, what data or content we'd give Copilot, and what the first step is to roll it out to the team."</div>
         </div>
       </div>
 

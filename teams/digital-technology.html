@@ -203,15 +203,47 @@
 
       <!-- Power Ups Section -->
       <div id="powerups-section">
-        <div class="section-title" style="margin-bottom:16px;">⚡ Your Power Up</div>
-        <p style="color:var(--ab-gray);font-size:0.9rem;margin-bottom:24px;">Take your strongest Copilot output and apply this Power Up to elevate it before you present.</p>
+        <div class="section-title" style="margin-bottom:16px;">&#9889; Power Up: Adopt It</div>
+        <p style="color:#333;font-size:0.9rem;margin-bottom:24px;">You have used Copilot to solve a scenario. Now bring it back to your real work at Alliance Bank.</p>
+
+        <!-- Step 1 -->
+        <div class="powerup-card" style="margin-bottom:16px;">
+          <div class="pu-header">
+            <span class="pu-num">1</span>
+            <span class="pu-title">Pick Your Use Case <span style="font-size:0.8rem;font-weight:500;opacity:0.7;">&middot; 5 min</span></span>
+          </div>
+          <p style="font-size:0.88rem;line-height:1.7;margin:0 0 12px;">In Tasks 1 and 2, you found that most release delays trace back to a small set of predictable failure types: incomplete requirements, UAT surprises, and environment issues that were foreseeable but not planned for. You then designed a standardised process that makes those failure modes visible before they become delays. Alliance Bank's technology delivery teams see the same patterns cycle after cycle.</p>
+          <p style="font-size:0.87rem;margin-bottom:8px;font-weight:600;">Use cases from digital banking and technology teams at banks like yours. React to these: swap, add, or keep.</p>
+          <ul style="font-size:0.86rem;line-height:1.9;color:#333;margin:0 0 14px 18px;">
+            <li>Analyse a release log and classify each delay by failure type: requirements gap, UAT failure, environment issue, or deployment error, then identify which type accounts for the most cumulative delay hours</li>
+            <li>Draft a standardised requirements template for a new feature request, based on the acceptance criteria from the team's last five successful releases</li>
+            <li>Review a user story before sprint planning and flag missing acceptance criteria, unstated dependency assumptions, or scope boundaries that will cause problems later</li>
+            <li>Write a post-release review summary from incident notes and team debrief comments, formatted for the delivery retrospective and ready to share</li>
+            <li>Generate a release readiness checklist for the next release, built directly from the failure patterns in the team's last 10 delivery cycles</li>
+          </ul>
+          <p style="font-size:0.87rem;margin-bottom:8px;">As a team, pick your top 3, then paste this into Copilot:</p>
+          <div class="pu-prompt">"We work in digital banking and technology at a bank. Here are 3 Copilot use cases we identified: [list them]. Score each on: time saved per week, how often we'd use it, and ease of implementation. Rank them and explain your top pick."</div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="powerup-card" style="margin-bottom:16px;">
+          <div class="pu-header">
+            <span class="pu-num">2</span>
+            <span class="pu-title">Build the Prompt <span style="font-size:0.8rem;font-weight:500;opacity:0.7;">&middot; 5 min</span></span>
+          </div>
+          <p style="font-size:0.88rem;line-height:1.7;margin:0 0 12px;">Your winning use case needs a great prompt. Paste this into Copilot:</p>
+          <div class="pu-prompt">"For this use case: [describe your winning use case]. What data or input would we need? Write the best Copilot prompt to make this work. Then show a sample output."</div>
+          <p style="font-size:0.86rem;margin-top:10px;color:var(--ab-gray);">Test it. Refine it. Make it yours.</p>
+        </div>
+
+        <!-- Step 3 -->
         <div class="powerup-card">
           <div class="pu-header">
-            <span class="pu-num">⚡</span>
-            <span class="pu-title">Convert to SOP</span>
+            <span class="pu-num">3</span>
+            <span class="pu-title">Pitch It <span style="font-size:0.8rem;font-weight:500;opacity:0.7;">&middot; 5 min</span></span>
           </div>
-          <div class="pu-prompt">"Turn this output into a clear, step-by-step SOP that anyone can follow."</div>
-          <div class="pu-how">💡 Use this to turn your process recommendations into something the product team can pick up and use from the very next sprint.</div>
+          <p style="font-size:0.88rem;line-height:1.7;margin:0 0 12px;">Draft your adoption pitch:</p>
+          <div class="pu-prompt">"Draft a short adoption pitch for our technology delivery manager: what the use case is, what problem it solves, what data or content we'd give Copilot, and what the first step is to roll it out to the team."</div>
         </div>
       </div>
 
