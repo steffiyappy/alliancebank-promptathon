@@ -279,7 +279,10 @@ body {
   border-radius: 14px; border: 1px solid rgba(168,85,247,0.3);
   padding: 24px; margin-bottom: 16px;
   box-shadow: 0 4px 20px rgba(139,0,255,0.15);
+  color: #E9D5FF;
 }
+.powerup-card p, .powerup-card li { color: #E9D5FF; }
+.powerup-card ol, .powerup-card ul { color: #E9D5FF; }
 .pu-header {
   display: flex; align-items: center; gap: 12px; margin-bottom: 14px;
 }

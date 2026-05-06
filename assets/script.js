@@ -101,7 +101,7 @@ function initTeamPage() {
   submitBtn?.addEventListener('click', attemptUnlock);
 
   async function attemptUnlock() {
-    const val = codeInput.value.trim().toUpperCase();
+    const val = codeInput.value.trim();
     const inputHash = await sha256(val);
     const expectedHash = TEAM_HASHES[teamId];
 
