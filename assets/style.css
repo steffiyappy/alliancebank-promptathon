@@ -281,8 +281,8 @@ body {
   box-shadow: 0 4px 20px rgba(139,0,255,0.15);
   color: #E9D5FF;
 }
-.powerup-card p, .powerup-card li { color: #E9D5FF; }
-.powerup-card ol, .powerup-card ul { color: #E9D5FF; }
+.powerup-card p, .powerup-card li { color: #E9D5FF !important; }
+.powerup-card ol, .powerup-card ul { color: #E9D5FF !important; }
 .pu-header {
   display: flex; align-items: center; gap: 12px; margin-bottom: 14px;
 }
